@@ -1,0 +1,56 @@
+services:
+
+  # 1. Frontend (React) Service
+  frontend:
+    build: ./frontendnpx
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  # 2. Backend (Spring Boot) Service
+  backend:
+    build: ./vehicledamage
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+      - python-api
+    environment:
+      # --- Database Connection ---
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/claim_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=Kishore@2004
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      
+      # --- API & Security Keys ---
+      - ML_API_BASE_URL=http://python-api:8000
+      - JWT_SECRET_KEY=yourSecretKeyForVehicleDamageEstimationAppMustBeLongAndSecure12345
+      
+      # --- File Uploads ---
+      - UPLOAD_DIR=/uploads
+      - SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=25MB
+      - SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=25MB
+    volumes:
+      - uploads-data:/uploads
+
+  # 3. Python (FastAPI) Service
+  python-api:
+    build: ./vehicle-damage-ml
+    ports:
+      - "8000:8000"
+
+  # 4. Database (MySQL) Service
+  mysql-db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"  
+    environment:
+      - MYSQL_ROOT_PASSWORD=Kishore@2004
+      - MYSQL_DATABASE=claim_db
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+  uploads-data:

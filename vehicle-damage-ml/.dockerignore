@@ -1,0 +1,22 @@
+This new file will make your builds MUCH faster
+
+It stops Docker from copying 2.19GB of unnecessary files
+
+Python virtual environment
+
+venv/
+.venv/
+
+Python cache
+
+pycache/
+*.pyc
+
+IDE folders
+
+.vscode/
+.idea/
+
+Git folder
+
+.git/
