@@ -1,0 +1,213 @@
+/* src/components/Contact.css */
+
+/* --- Inherits Base Variables from Form.css (Ensure Form.css is imported globally or here) --- */
+
+/* 1. Page Background (Matches Register/Login) */
+.contact-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 20px 50px; /* Top padding for fixed navbar */
+
+  /* Dynamic Gradient Animation */
+  background: linear-gradient(-45deg, #1a202c, #2d3748, #004e92, #000428);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+/* 2. The Main Card */
+.contact-card {
+  display: flex;
+  width: 100%;
+  max-width: 1100px; /* Wider for contact form */
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+
+  /* Entrance Animation */
+  animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* 3. Left Panel (Dark Info Side) */
+.contact-info-panel {
+  flex: 1;
+  min-width: 350px;
+  padding: 50px;
+  color: white;
+  background: #1a202c; /* Solid Dark */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Tech Pattern Overlay */
+.contact-info-panel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
+  background-size: 30px 30px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.contact-info-content {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ff6600; /* Accent Orange */
+  margin-bottom: 15px;
+}
+
+.contact-subtitle {
+  font-size: 1.1rem;
+  color: #a0aec0;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  border-bottom: 1px solid #2d3748;
+  padding-bottom: 30px;
+}
+
+/* Contact Details */
+.contact-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.contact-icon-box {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff6600;
+  flex-shrink: 0;
+}
+.contact-item h4 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: #fff;
+}
+.contact-item p,
+.contact-item a {
+  color: #cbd5e0;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+/* Guarantee Box */
+.guarantee-box {
+  margin-top: auto;
+  background: rgba(45, 55, 72, 0.5);
+  border: 1px solid #4a5568;
+  border-left: 4px solid #ff6600;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 4. Right Panel (Form Side) */
+.contact-form-panel {
+  flex: 1.5;
+  padding: 60px;
+  background: #fff;
+}
+
+.contact-form-header {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 30px;
+}
+
+/* Inputs (Matching Register Page) */
+.contact-input-group {
+  margin-bottom: 25px;
+}
+.contact-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 0.9rem;
+}
+.contact-input,
+.contact-textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #edf2f7;
+  border-radius: 12px;
+  background: #f7fafc;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.contact-input:focus,
+.contact-textarea:focus {
+  border-color: #ff6600;
+  background: #fff;
+  outline: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.15);
+}
+
+/* Button */
+.contact-submit-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #ff6600 0%, #ff8533 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.contact-submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 102, 0, 0.3);
+}
+.contact-submit-btn:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .contact-card {
+    flex-direction: column;
+  }
+  .contact-info-panel {
+    padding: 40px;
+    min-height: auto;
+  }
+  .contact-form-panel {
+    padding: 40px;
+  }
+}

@@ -1,0 +1,410 @@
+:root {
+  /* 🎨 UPDATED: Premium Cloud Background */
+  --profile-bg: linear-gradient(180deg, #fdfbfb 0%, #ebedee 100%);
+  --card-bg: #ffffff;
+  --primary-blue: #007bff;
+  --primary-blue-dark: #0056b3;
+  --primary-green: #28a745;
+  --primary-green-dark: #218838;
+  --dark-text: #1a202c;
+  --light-text: #4a5568;
+  --border-color: #e2e8f0;
+  --shadow-subtle: 0 10px 20px rgba(0, 0, 0, 0.05);
+  --shadow-lift: 0 20px 40px rgba(0, 0, 0, 0.12);
+  --table-hover-bg: #f8fbff;
+  --table-header-bg: #f1f5f9;
+}
+
+/* -----------------------------------------------------
+   Profile Containers & Header
+----------------------------------------------------- */
+/* --- 📏 FIXED: Spacing & Width --- */
+.internal-page-wrapper {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  width: 100%;
+  /* Increase top padding to clear the navbar comfortably */
+  padding-top: 50px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  background-image: url("../../assets/profile-background1.jpg.crdownload");
+  background-size: cover; /* Makes it cover the whole area */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.profile-container {
+  width: 95%; /* Use 95% of screen width instead of fixed 100% */
+  max-width: 1400px; /* Increase max-width for wide screens */
+  margin: 0 auto;
+}
+
+/* Fix the Heading Spacing */
+.profile-container h1 {
+  text-align: center;
+
+  /* 📉 ADD/UPDATE THIS LINE */
+  margin-top: 0;
+
+  margin-bottom: 40px;
+  color: #1a202c;
+  font-weight: 900;
+  font-size: 3.5rem;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+/* 🚀 ENHANCEMENT 1: Profile Avatar Area - Neumorphic Base */
+.profile-avatar-area {
+  background-color: transparent; /* Remove background */
+  padding: 0; /* Remove padding */
+  margin-bottom: 50px; /* Space below avatar */
+  box-shadow: none; /* Remove box shadow from container */
+}
+
+.profile-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--primary-blue);
+  box-shadow: 0 0 15px var(--shadow-glow);
+  cursor: pointer;
+  margin-bottom: 18px !important;
+  transition: all 0.3s ease;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px var(--shadow-glow);
+}
+/* --- Style for the H1 underline --- */
+.profile-container h1::after {
+  content: "";
+  display: block;
+  width: 200px; /* You can adjust this width */
+  height: 4px;
+  background-color: var(--primary-blue); /* Uses your existing blue */
+  border-radius: 2px;
+  margin: 15px auto 0 auto; /* Centers the line */
+}
+
+.upload-button {
+  padding: 10px 25px !important;
+  background-color: var(--primary-blue) !important;
+  color: white !important;
+  border: none; /* Remove border */
+  border-radius: 50px !important;
+  font-weight: 700;
+  cursor: pointer; /* Add cursor */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upload-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.6);
+}
+
+/* --- User Info Card (Clean & Focused) --- */
+.user-info {
+  background: var(--table-header-bg); /* Solid White */
+  border-radius: 15px;
+  padding: 40px;
+  margin-bottom: 50px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); /* Soft float shadow */
+  border: none; /* Remove old borders */
+  display: flex;
+  justify-content: space-evenly; /* Even spacing */
+  align-items: center;
+}
+
+.user-info::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    var(--primary-blue-dark) 0%,
+    transparent 70%
+  );
+  opacity: 0.1;
+  border-radius: 50%;
+}
+/* This rule is now part of the enhancement section below */
+
+.user-info-item {
+  text-align: center;
+  border-right: 2px solid #edf2f7; /* Stronger separator */
+  width: 100%;
+}
+.user-info p {
+  margin: 10px 0;
+  font-size: 1.15rem;
+  color: var(--light-text); /* Use lighter text */
+}
+
+.user-info strong {
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-right: 8px;
+}
+.user-info-item:last-child {
+  border-right: none;
+}
+
+.info-label {
+  color: #718096;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.info-value {
+  color: #2d3748;
+  font-size: 1.5rem; /* Larger text */
+  font-weight: 800;
+}
+/* -----------------------------------------------------
+   Claims History Section (Table Enhancement)
+----------------------------------------------------- */
+.claims-history-section {
+  background-color: var(--table-header-bg);
+  padding: 35px;
+  border-radius: 20px;
+  margin: 0 20px 40px 20px; /* Add side margin */
+  box-shadow: 0 15px 40px var(--shadow-subtle);
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+}
+.claims-history-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px var(--shadow-lift); /* Use lift shadow */
+}
+
+.claims-history-section h2 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: var(--dark-text);
+  font-weight: 900;
+  padding-bottom: 15px; /* Add padding below */
+  border-bottom: 2px solid var(--border-color); /* Add border below */
+}
+
+/* --- 📊 ENHANCED: Floating Rows Table --- */
+.claims-table-wrapper {
+  overflow-x: auto;
+  padding: 10px; /* Space for shadows */
+}
+
+.claims-table {
+  width: 100%;
+  border-collapse: separate; /* Essential for spacing */
+  border-spacing: 0 15px; /* Creates gap between rows */
+  margin-top: 0;
+}
+/* --- 📊 FIXED: Table Columns --- */
+/* Add this to force the last column (Action) to be narrow */
+.claims-table th:last-child,
+.claims-table td:last-child {
+  width: 150px; /* Fixed width for buttons */
+  text-align: right; /* Align button to the right */
+  padding-right: 30px;
+}
+
+.view-details-link {
+  width: auto; /* Let button size itself */
+  padding: 10px 20px; /* Comfortable padding */
+  display: inline-block;
+}
+/* Header - Subtle & Clean */
+.claims-table th {
+  background-color: transparent;
+  color: #718096;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0 20px 10px 20px;
+  border: none;
+}
+
+/* Rows - The Floating Card Effect */
+.claims-table tbody tr {
+  background-color: var(--table-header-bg);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Soft float shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px; /* Rounded edges */
+}
+
+.claims-table tbody tr:hover {
+  transform: translateY(-3px) scale(1.005);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  position: relative;
+}
+
+.claims-table td {
+  padding: 20px;
+  background-color: transparent; /* Let row bg show */
+  border: none; /* Remove old lines */
+  color: var(--dark-text);
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+/* Round the corners of the row */
+.claims-table td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.claims-table td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Currency Column */
+.claims-table td.currency {
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+/* Smaller "View" Button */
+.view-details-link {
+  background: #edf2f7;
+  color: var(--primary-blue) !important;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700 !important;
+  transition: all 0.2s;
+}
+
+.view-details-link:hover {
+  background: var(--primary-blue);
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* --- New Claim Button Section --- */
+.new-claim-section {
+  text-align: center;
+  padding: 40px 20px; /* Add horizontal padding */
+  margin: 0 20px 20px 20px;
+  border-radius: 20px; /* MODIFIED: Add rounded corners */
+  box-shadow: 0 10px 25px var(--shadow-subtle); /* MODIFIED: Add shadow */
+  border-top: none; /* MODIFIED: Remove old top border */
+}
+
+.new-claim-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none !important;
+  background-image: linear-gradient(
+    135deg,
+    var(--primary-green),
+    var(--primary-green-dark)
+  );
+  border: none; /* Remove border */
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer; /* Add cursor */
+}
+.new-claim-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(40, 167, 69, 0.8);
+}
+
+/* --- 📸 NEW: Floating Edit Button --- */
+.edit-avatar-btn {
+  position: absolute;
+  bottom: 25px; /* Adjust to sit on the rim of the circle */
+  right: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  color: white;
+  border: 2px solid white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+}
+
+.edit-avatar-btn:hover {
+  transform: scale(1.1);
+  background: var(--primary-blue-dark);
+}
+
+/* =========================================
+   🚀 FINAL MERGED STATUS BADGE STYLES
+   ========================================= */
+
+/* 1. Base Badge Shape & Animation */
+/* 1. Default State (Neutral / Grey) */
+.status-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: default;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Default Neutral Look */
+  background-color: #e2e8f0; /* Light Grey */
+  color: #4a5568; /* Dark Grey Text */
+  border: 1px solid transparent;
+}
+
+/* 1. Add cursor and transition to the main badge class */
+.status-badge {
+  cursor: default; /* Or 'pointer' if you want it clickable */
+  transition: all 0.3s ease; /* Makes the color change smooth */
+}
+
+/* =========================================
+   🎨 STATUS COLORS (Fixed Colors)
+   ========================================= */
+
+/* ✅ APPROVED: Green */
+.status-success {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+  border: 1px solid #c3e6cb;
+}
+
+/* ⚠️ WAITING / ANALYZED: Yellow */
+.status-warning {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+  border: 1px solid #ffeeba;
+}
+
+/* ❌ REJECTED: Red */
+.status-danger {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  border: 1px solid #f5c6cb;
+}

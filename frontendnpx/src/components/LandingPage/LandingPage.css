@@ -1,0 +1,782 @@
+/* ======================================================
+   0. Globals & Base Styles (Retained)
+====================================================== */
+:root {
+  --color-primary: #28a745;
+  --color-secondary: #ff6600;
+  --color-dark: #1a202c;
+  --color-darker: #2d3748;
+  --color-light: #f5f7fa;
+  --color-light-accent: #fcfdfe;
+  --color-white: #ffffff;
+}
+
+.page-container {
+  padding: 0;
+  background-color: var(--color-light);
+  min-height: 100vh;
+  font-family: "Roboto", "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+/* ======================================================
+   1. Hero Section (Retained - Stable)
+====================================================== */
+.hero-section {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 160px 0;
+  text-align: center;
+  background-image: url("/public/image-auto.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 32, 44, 0.65) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 5em;
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 25px;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+}
+
+.hero-content p {
+  font-size: 2em;
+  font-weight: 300;
+  max-width: 700px;
+  margin: 0 auto 60px;
+  color: #f7fafc;
+}
+
+/* --- Buttons & Separator (Retained) --- */
+.primary-button,
+.secondary-button {
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  transform: translateY(0);
+}
+.primary-button {
+  padding: 20px 45px;
+  font-size: 1.4em;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 10px 30px rgba(40, 167, 69, 0.5);
+}
+.primary-button:hover {
+  background-color: #1e7e34;
+  box-shadow: 0 20px 45px rgba(40, 167, 69, 0.8);
+  transform: translateY(-5px);
+}
+.secondary-button {
+  padding: 16px 35px;
+  font-size: 1.2em;
+  background-color: transparent;
+  color: var(--color-secondary);
+  margin-left: 25px;
+  border: 3px solid var(--color-secondary);
+}
+.secondary-button:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  box-shadow: 0 10px 25px rgba(255, 102, 0, 0.5);
+  transform: translateY(-2px);
+}
+.separator-line {
+  height: 12px;
+  background: linear-gradient(
+    to right,
+    var(--color-secondary),
+    #ff8c00,
+    var(--color-secondary)
+  );
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ======================================================
+   3. Value Cards: FIX Missing Title/Icon Display
+====================================================== */
+.value-section {
+  padding: 120px 20px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    var(--color-white) 0%,
+    var(--color-light) 100%
+  );
+}
+
+.value-card-container {
+  gap: 30px;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.value-card {
+  flex: 1;
+  min-width: 280px;
+  padding: 45px 30px;
+  border-radius: 20px;
+  background-color: var(--color-light-accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 0 10px rgba(255, 255, 255, 0.8);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  border: none;
+  /* 🚀 NEW: Ensure children are centered vertically and horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center; /* Ensure internal text is centered */
+}
+
+.value-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 30px 60px rgba(255, 102, 0, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.8);
+  border-color: transparent;
+}
+
+/* 🚀 FIX: Icon container styles (Ensuring visibility) */
+.icon-container {
+  font-size: 4.5em;
+  color: var(--color-secondary);
+  margin-bottom: 10px; /* Reduced margin for tighter look */
+  background-color: #fff3e0;
+  border-radius: 50%;
+  width: 90px; /* Slightly smaller for cleaner look */
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+/* 🚀 FIX: Title display (Using generic h3 for robustness) */
+.value-card h3 {
+  font-size: 1.8em; /* Slightly smaller title for balance */
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-top: 0;
+  margin-bottom: 10px; /* Space between title and text */
+}
+
+/* 🚀 FIX: Card text alignment and size */
+.value-card p {
+  font-size: 1.05em;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ======================================================
+   4. How It Works Steps: FIX Missing Title/Text Formatting
+====================================================== */
+.how-it-works-section {
+  position: relative;
+  padding: 100px 20px;
+  text-align: center;
+  /* Off-white background with a subtle DOT pattern */
+  background-color: #f8f9fa;
+  background-image: radial-gradient(#cbd5e0 1.5px, transparent 1.5px);
+  background-size: 24px 24px; /* Size of the dot grid */
+}
+.how-it-works-section .section-header {
+  color: #1a202c;
+  position: relative;
+  z-index: 3;
+}
+.step-box-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+.step-box {
+  flex: 1;
+  min-width: 280px;
+  background-color: var(--color-light-accent);
+  padding: 35px 30px;
+  margin-bottom: 0;
+  border-radius: 15px;
+  border-left: 0;
+  border-top: 10px solid #007bff; /* Horizontal Blue Bar */
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 🚀 FIX: Step Title display (Making it bold and clear) */
+.step-box h3 {
+  font-size: 1.3em; /* Reduced size for steps */
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+}
+/* 🚀 FIX: Step Description display */
+.step-box p {
+  font-size: 1.05em;
+  color: #555;
+  margin: 0;
+}
+
+.step-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 123, 255, 0.3);
+}
+/* ======================================================
+   5. General Utility & Footer ENHANCEMENTS
+====================================================== */
+.section-header {
+  font-size: 3.2em;
+  margin-bottom: 20px;
+  font-weight: 900;
+}
+.section-subheader {
+  font-size: 1.5em;
+  color: #666;
+  margin: 0 auto 60px;
+  max-width: 1000px;
+}
+
+/* 🚀 QUOTE SECTION ENHANCEMENT */
+.quote-section {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 120px 20px;
+  text-align: center;
+  /* 🚀 Added a strong visual boundary */
+  border-top: 5px solid var(--color-secondary);
+}
+.quote-text {
+  font-size: 2.5em; /* Slightly larger, more powerful quote */
+  font-style: italic;
+  font-weight: 300;
+  max-width: 900px;
+  margin: 0 auto 15px;
+  line-height: 1.4;
+}
+.quote-author {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--color-secondary); /* Accent color for signature */
+  display: block; /* Ensures author is on a new line */
+  margin-top: 10px;
+}
+
+.contact-section {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 120px 20px;
+  text-align: center;
+}
+/* ... contact-section h2 and subheader styles retained ... */
+
+/* 🚀 FOOTER ENHANCEMENT */
+.footer {
+  background-color: var(--color-darker);
+  color: #a0aec0; /* Lighter text color for better contrast */
+  padding: 30px 20px; /* Reduced padding for compact look */
+  text-align: center;
+  font-size: 0.95em;
+  /* 🚀 Added a subtle top border for definition */
+  border-top: 1px solid #4a5568;
+}
+.footer a {
+  color: var(--color-white); /* White links stand out more */
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500; /* Bolder links */
+}
+.footer a:hover {
+  color: var(--color-secondary); /* Accent color on hover */
+  text-decoration: underline; /* Standard link enhancement */
+}
+/* 6. Media Query Fixes (Retained)
+*/
+@media (max-width: 1024px) {
+  /* Value cards and Step boxes stack vertically on tablets */
+  .value-card-container {
+    flex-direction: column;
+  }
+  .value-card {
+    flex: unset;
+    width: 80%;
+    margin: 0 auto 30px;
+  }
+  .step-box-container {
+    flex-direction: column;
+    gap: 0;
+  }
+  .step-box {
+    margin-bottom: 30px;
+    border-top: 0;
+    border-left: 10px solid #007bff;
+  }
+  .step-box:hover {
+    transform: translateX(10px);
+  }
+}
+
+@media (max-width: 600px) {
+  /* Retained mobile size adjustments */
+  .hero-content h1 {
+    font-size: 2.8em;
+    line-height: 1.3;
+  }
+  .primary-button,
+  .secondary-button {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    font-size: 1.2em;
+  }
+  .value-card {
+    width: 90%;
+  }
+}
+
+/* --- 🖱️ NEW: Scroll Indicator Animation --- */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.mouse {
+  width: 30px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background: white;
+  border-radius: 2px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 1.5s infinite;
+}
+
+.arrow-down {
+  width: 15px;
+  height: 15px;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: rotate(45deg);
+  animation: scrollArrow 1.5s infinite;
+  animation-delay: 0.2s;
+}
+
+@keyframes scrollWheel {
+  0% {
+    top: 10px;
+    opacity: 1;
+  }
+  100% {
+    top: 30px;
+    opacity: 0;
+  }
+}
+
+@keyframes scrollArrow {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-5px, -5px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+}
+
+/* --- 💎 UPDATE: Glassmorphism Cards --- */
+.value-card {
+  flex: 1;
+  min-width: 280px;
+  padding: 45px 30px;
+  border-radius: 20px;
+
+  /* GLASS EFFECT */
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+  backdrop-filter: blur(12px); /* Blur content behind it */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Subtle white border */
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); /* Soft shadow */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.value-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  background: rgba(255, 255, 255, 0.95); /* More solid on hover */
+  box-shadow: 0 30px 60px rgba(0, 123, 255, 0.15),
+    /* Blue glow */ 0 0 0 1px rgba(0, 123, 255, 0.1); /* Subtle blue border */
+}
+
+/* --- 🔗 NEW: Connecting Process Line --- */
+.step-box-container {
+  position: relative; /* Establish context for the line */
+  /* ... existing styles ... */
+}
+
+/* The Dashed Line */
+@media (min-width: 1025px) {
+  .step-box-container::before {
+    content: "";
+    position: absolute;
+    top: 50px; /* Adjust based on where you want the line to cross */
+    left: 50px;
+    right: 50px;
+    height: 2px;
+    background-image: linear-gradient(to right, #ccc 50%, transparent 50%);
+    background-size: 20px 1px;
+    z-index: 0;
+  }
+}
+
+/* Ensure boxes sit ON TOP of the line */
+.step-box {
+  position: relative;
+  z-index: 2;
+  background: white; /* Ensure line doesn't show through box text */
+}
+
+/* --- ✨ NEW: Text Gradient Animation --- */
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(0, 123, 255, 0.8),
+      0 0 40px rgba(0, 123, 255, 0.4);
+  }
+  100% {
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+  }
+}
+
+.hero-title {
+  /* Apply the animation */
+  animation: textGlow 3s infinite;
+}
+
+/* --- 💬 NEW: Testimonials --- */
+.testimonials-section {
+  padding: 100px 20px 180px 20px; /* Extra bottom padding for the wave to overlap */
+  /* Deep Navy Blue Gradient */
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 50px auto 0;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  flex: 1;
+  min-width: 300px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  position: relative;
+  border-top: 5px solid var(--color-primary); /* Green accent */
+  transition: transform 0.3s ease;
+}
+.testimonial-card {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  border: none; /* Remove border */
+}
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+.testimonials-section .section-header {
+  color: #ffffff !important;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.quote-icon {
+  font-size: 5rem;
+  color: #e2e8f0;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-family: serif;
+  line-height: 0;
+}
+
+.testimonial-text {
+  font-size: 1.1em;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  background: #edf2f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+}
+
+.user-name {
+  margin: 0;
+  color: var(--color-dark);
+  font-weight: 700;
+}
+
+.user-role {
+  font-size: 0.9em;
+  color: #718096;
+}
+
+/* --- 📊 NEW: Stats Banner --- */
+.stats-section {
+  background: #1a202c; /* Matches hero dark theme */
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 5;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px 20px;
+  opacity: 0;
+  animation: slideUpFade 0.8s forwards; /* Re-using your animation */
+}
+
+.stat-item:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.stat-item:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.stat-item:nth-child(5) {
+  animation-delay: 0.6s;
+}
+.stat-item:nth-child(7) {
+  animation-delay: 0.8s;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.8em;
+  font-weight: 900;
+  /* Gradient Text */
+  background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  color: var(--color-secondary); /* Orange accent */
+  font-weight: 600;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Vertical divider lines */
+.stat-divider {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, #4a5568, transparent);
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .stat-divider {
+    display: none;
+  } /* Hide lines on mobile */
+}
+
+/* --- 🌊 NEW: Wave Divider Styles --- */
+.custom-shape-divider-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 2; /* Sits on top */
+}
+
+.custom-shape-divider-top svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 80px; /* Height of the wave */
+}
+
+.custom-shape-divider-top .shape-fill {
+  fill: #0f172a; /* MATCHES THE TESTIMONIALS BACKGROUND COLOR */
+}
+
+/* --- 🚀 UPDATE: CTA Section (Lighter & Cleaner) --- */
+.cta-section {
+  padding: 120px 20px;
+  /* Change background to Clean White */
+  background-color: #ffffff;
+  text-align: center;
+  color: #1a202c; /* Dark Text */
+  position: relative;
+  border-top: 1px solid #e2e8f0;
+}
+
+.cta-section h2 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 15px;
+  color: #1a202c; /* Dark Title */
+  text-shadow: none; /* Remove shadow for clean look */
+}
+
+.cta-section p {
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  color: #64748b; /* Grey subtext */
+}
+
+/* The Button becomes the Green Accent */
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    #28a745 0%,
+    #218838 100%
+  ); /* Green Button */
+  color: white;
+  padding: 20px 50px;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(40, 167, 69, 0.4); /* Green Shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(40, 167, 69, 0.6);
+}
+
+.cta-button .arrow {
+  color: white;
+  margin-left: 10px;
+}
+
+/* --- 💬 UPDATE: Quote Section (The Break) --- */
+.quote-section {
+  /* distinct dark shade with a subtle border */
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: var(--color-white);
+  padding: 100px 20px;
+  text-align: center;
+  position: relative;
+
+  /* Adds a glowing orange line at the bottom to separate it from Testimonials */
+  border-bottom: 4px solid var(--color-secondary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 5; /* Ensures it sits above the next section */
+}
+
+/* Make the text pop more */
+.quote-text {
+  font-size: 2.2em;
+  font-weight: 300;
+  max-width: 900px;
+  margin: 0 auto 15px;
+  line-height: 1.5;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}

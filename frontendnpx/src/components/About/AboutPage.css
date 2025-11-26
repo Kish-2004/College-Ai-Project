@@ -1,0 +1,222 @@
+/* src/components/AboutPage.css */
+
+/* --- Keyframe Animations --- */
+
+/* Animation for cards to fade in and slide up */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✨ NEW: Animation for the background gradient */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --- Page Body & Container --- */
+
+body {
+  /* ✨ NEW: Animated gradient background */
+  background: linear-gradient(120deg, #f0f4f8, #dbe9f6, #f0f4f8);
+  background-size: 200% 200%;
+  animation: gradient-flow 20s ease-in-out infinite;
+}
+
+.about-page-container {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* --- Header & Title --- */
+
+.about-header {
+  margin-bottom: 100px;
+}
+
+/* Gradient text for the main header */
+.about-header h1 {
+  font-size: 3.8rem;
+  font-weight: 900;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #0056b3, #007bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.about-header p {
+  font-size: 1.35rem;
+  color: #34495e;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* --- Team Section --- */
+
+.team-section h2 {
+  font-size: 3rem;
+  color: #1a202c;
+  margin-bottom: 70px;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+/* Animated gradient underline for the section title */
+.team-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 5px;
+  background: linear-gradient(90deg, #007bff, #3498db);
+  border-radius: 3px;
+}
+
+/* --- Team Grid (3D Stage) --- */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 50px;
+
+  /* 🔥 NEW: Sets the 3D "stage" for the tilt effect */
+  perspective: 1500px;
+}
+
+/* --- 💎 NEW: Glassmorphism Card Style --- */
+
+.team-member-card {
+  /* --- The Glass Effect --- */
+  background: rgba(255, 255, 255, 0.45); /* Semi-transparent white */
+  backdrop-filter: blur(15px) saturate(120%);
+  -webkit-backdrop-filter: blur(15px) saturate(120%);
+
+  /* --- The Glass Edge --- */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+  border-radius: 20px;
+
+  /* --- The Shadow (for depth) --- */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); /* Softer shadow for glass */
+
+  /* --- Base Properties --- */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-align: center;
+  overflow: hidden;
+
+  /* Apply the entrance animation */
+  opacity: 0;
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+}
+
+/* Staggered animation delay */
+.team-member-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.team-member-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* --- 🔥 NEW: Combined 3D Tilt + Glass Hover Effect --- */
+.team-member-card:hover {
+  /* The 3D tilt transform */
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+
+  /* The "glowing" glass edge */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  /* A stronger, lifted shadow */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 💎 NEW: Glass-Adjusted Photo Frame --- */
+.team-member-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 40px auto 25px auto;
+
+  /* Use a less transparent border to "pop" against the glass */
+  border: 8px solid rgba(255, 255, 255, 0.7);
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Keep the blue photo glow on card hover */
+.team-member-card:hover .team-member-photo {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+/* --- Card Content --- */
+
+.team-member-info {
+  padding: 0 35px 35px 35px;
+}
+
+.team-member-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.7rem;
+  color: #1a202c;
+}
+
+.team-member-info h4 {
+  margin: 0 0 20px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #8e44ad; /* Purple accent */
+}
+
+.team-member-info p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #555;
+  min-height: 90px;
+}
+
+/* --- Social Links Button --- */
+
+.social-links {
+  margin-top: 25px;
+}
+
+.social-links a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.social-links a:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
+}

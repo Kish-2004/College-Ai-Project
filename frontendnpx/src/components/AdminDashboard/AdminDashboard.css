@@ -1,0 +1,566 @@
+/* ====================================================================== */
+/*                     ADMIN DASHBOARD + SIDEBAR LAYOUT                   */
+/* ====================================================================== */
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ---------------------------- SIDEBAR ---------------------------- */
+
+.sidebar {
+  width: 250px;
+  background: rgba(20, 22, 36, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 2rem 1.5rem;
+  color: white;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  box-shadow: 4px 0 14px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+.sidebar li:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+/* ------------------------- MAIN CONTENT ------------------------- */
+
+.admin-container {
+  flex: 1;
+  padding: 2.5rem;
+  position: relative;
+  background: url("/public/admin-bg1.jpg") no-repeat center center / cover;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+    sans-serif;
+}
+
+.admin-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+/* ====================================================================== */
+/*                             HEADER STYLING                             */
+/* ====================================================================== */
+
+.admin-header {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine 5s linear infinite;
+  margin-bottom: 2.5rem;
+  text-align: center; /* Centered */
+}
+
+@keyframes shine {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.4);
+  }
+}
+
+/* ====================================================================== */
+/*                         SECTIONS (WITH GLASS EFFECT)                   */
+/* ====================================================================== */
+
+.admin-section {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 2rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.admin-section h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #4a5568;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #dfe6ef;
+}
+
+/* Fade Animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====================================================================== */
+/*                         ERROR MESSAGE                                  */
+/* ====================================================================== */
+
+.error-message {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  border: 1px solid #d8000c;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+/* ====================================================================== */
+/*                     1. KEY METRICS (GLASS CARDS)                      */
+/* ====================================================================== */
+
+.key-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  padding: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  animation: fadeInRow 0.6s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon */
+.metric-icon {
+  font-size: 40px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.metric-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-value {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #1f2c3d;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: #6c7a89;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* ====================================================================== */
+/*                    2. USER ACTIVITY CARDS                              */
+/* ====================================================================== */
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border-left: 6px solid #2575fc;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.3s ease;
+  animation: fadeInRow 0.6s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.stat-card-email {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-top: 6px;
+}
+
+.stat-card-count {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #1f2c3d;
+}
+
+/* ====================================================================== */
+/*                   3. CLAIMS TABLE (MODERN + ANIMATED)                  */
+/* ====================================================================== */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.claims-table {
+  width: 100%;
+  border-spacing: 0 14px;
+}
+
+.claims-table th {
+  background: transparent;
+  font-weight: 700;
+  color: #7f8c8d;
+  padding: 12px 15px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #cfd8e3;
+}
+
+.claims-table td {
+  padding: 1.6rem 15px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+}
+
+.claims-table tr {
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: 0.3s ease;
+  animation: fadeInRow 0.5s ease;
+}
+
+@keyframes fadeInRow {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.claims-table tr:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.12);
+}
+
+.claims-table td:first-child {
+  border-radius: 14px 0 0 14px;
+}
+.claims-table td:last-child {
+  border-radius: 0 14px 14px 0;
+}
+/* 🟢 FIX 1: Widen the Action Column so 3 buttons fit */
+.claims-table th:last-child,
+.claims-table td:last-child {
+  width: 350px; /* Increased from 260px to 350px */
+  min-width: 350px; /* Forces the column to stay wide */
+  text-align: center;
+  padding-right: 10px;
+}
+/* ====================================================================== */
+/*                          STATUS BADGES                                 */
+/* ====================================================================== */
+
+.status {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ====================================================================== */
+/*                         DETAILS BUTTON                                 */
+/* ====================================================================== */
+
+/* --- 🚀 UPDATED: Premium 'View Details' Button --- */
+.details-link-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2575fc; /* Primary Blue Text */
+  text-decoration: none;
+  background: rgba(37, 117, 252, 0.1); /* Very light blue tint */
+  border: 1px solid rgba(37, 117, 252, 0.3);
+  border-radius: 50px; /* Full Pill Shape */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Hover State: Fills with gradient and lifts */
+.details-link-button:hover {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4); /* Blue Glow */
+}
+
+/* Optional: Active/Click State */
+.details-link-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(37, 117, 252, 0.3);
+}
+
+/* ====================================================================== */
+/*                 SKELETON LOADING (INSTAGRAM STYLE)                     */
+/* ====================================================================== */
+
+.skeleton-row {
+  height: 40px;
+  background: linear-gradient(90deg, #e3e3e3, #f5f5f5, #e3e3e3);
+  background-size: 200%;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  animation: skeletonLoading 1.3s infinite;
+}
+
+@keyframes skeletonLoading {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+/* ====================================================================== */
+/*               OPTIONAL FLOATING GLASS BUBBLES                           */
+/* ====================================================================== */
+
+.background-bubble {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  filter: blur(18px);
+  animation: floaty 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes floaty {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 🟢 NEW: Professional Action Buttons */
+.action-cell {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-action {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.btn-action:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-view {
+  background-color: #e2e6ea;
+  color: #333;
+}
+.btn-approve {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.btn-reject {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* 🟢 NEW: Better Status Badges */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+/* 🟢 UPDATED: Better Status Colors */
+/* =========================================
+   🎨 STATUS COLORS (Fixed Colors)
+   ========================================= */
+
+/* ✅ APPROVED: Green */
+.status-success {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+  border: 1px solid #c3e6cb;
+}
+
+/* ⚠️ WAITING: Yellow */
+.status-warning {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+  border: 1px solid #ffeeba;
+}
+
+/* ❌ REJECTED: Red */
+.status-danger {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  border: 1px solid #f5c6cb;
+}
+
+/* 🟢 FIX 3: BUTTON STYLING */
+/* 🟢 FIX 2: Ensure Button Text is Visible */
+.btn-action {
+  padding: 8px 18px; /* Slightly larger padding */
+  min-width: 80px; /* Ensures buttons don't shrink too small */
+  white-space: nowrap; /* Prevents text from being cut off */
+  font-size: 0.9rem; /* Slightly larger text */
+
+  /* Keep existing styles below */
+  border-radius: 6px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* View Button (Grey/Blue) */
+.btn-view {
+  background-color: #e2e8f0;
+  color: #2d3748;
+}
+/* 🟢 UPDATE: Make View Button Blue on Hover */
+.btn-view:hover {
+  background-color: #007bff; /* Bright Blue */
+  color: white; /* White Text */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3); /* Blue Glow */
+}
+
+/* Accept Button (Green) */
+.btn-accept {
+  background-color: #48bb78;
+  color: white;
+}
+.btn-accept:hover {
+  background-color: #38a169;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Reject Button (Red) */
+.btn-reject {
+  background-color: #f56565;
+  color: white;
+}
+.btn-reject:hover {
+  background-color: #e53e3e;
+  box-shadow: 0 4px 12px rgba(245, 101, 101, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 🟢 FIX 2: SPACE OUT THE BUTTONS */
+.action-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Adds space between View, Accept, Reject */
+}

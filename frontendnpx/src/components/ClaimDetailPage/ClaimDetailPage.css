@@ -1,0 +1,780 @@
+/* src/components/ClaimDetailPage.css - ULTRA Enhanced Version */
+
+/* --- Base Variables for Consistency --- */
+:root {
+  /* Color Palette - Deeper, Modern, and Harmonious */
+  --page-bg-start: #eef2f7;
+  --page-bg-end: #dce2e9;
+  --card-bg-white: #ffffff;
+  --primary-blue: #0060ad;
+  --primary-gradient-start: #007bff;
+  --primary-gradient-end: #00c2ff;
+  --secondary-dark: #1a2c3d;
+  --accent-yellow: #fdd835;
+  --text-color-dark: #333d47;
+  --text-color-light-grey: #6b7a8a;
+  --border-light: #e0e5ea;
+
+  /* --- NEW: Colors for Summary Cards --- */
+  --accent-orange-dark: #e0a800;
+  --accent-orange-light: #ffc107;
+  --accent-green-dark: #218838;
+  --accent-green-light: #28a745;
+  --accent-teal-dark: #138496;
+  --accent-teal-light: #17a2b8;
+  --text-color-light: #e0e6eb; /* For text on dark cards */
+
+  /* Shadows - More prominent, layered, and softer */
+  --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 25px rgba(0, 119, 194, 0.4);
+  --table-header-bg: #e5f1ff; /* Light blue background for table headers */
+
+  /* Transitions */
+  --transition-ease: all 0.3s ease-in-out;
+  --transition-lift: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- FINAL FIX: OVERRIDE --- */
+body {
+  background: linear-gradient(
+    135deg,
+    var(--page-bg-start) 0%,
+    var(--page-bg-end) 100%
+  );
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: var(--text-color-dark);
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.internal-page-wrapper {
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box;
+}
+
+/* --- Claim Detail Page Container & Headers --- */
+.claim-detail-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 50px 40px;
+}
+
+.claim-detail-container h1 {
+  text-align: center; /* This line centers the text */
+  margin-top: 30px; /* This adds space above it */
+  margin-bottom: 15px;
+  font-weight: 900;
+  font-size: 3rem;
+  color: var(--secondary-dark);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
+  letter-spacing: -0.5px;
+}
+
+.claim-meta {
+  text-align: center; /* This line centers the text */
+  color: var(--text-color-light-grey);
+  margin-bottom: 60px;
+  font-size: 1.15rem;
+  font-style: italic;
+  letter-spacing: 0.8px;
+}
+
+/* 🚀 ENHANCEMENT 1: Main Information Cards with Layered Shadow & Subtle Border */
+/* --- Main Section Cards (Vehicle Info, Visual Evidence) --- */
+.detail-section {
+  background-color: var(--card-bg-white);
+  border-radius: 20px;
+  padding: 40px 55px;
+  margin-bottom: 45px;
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-lift);
+}
+
+.detail-section:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-heavy), var(--shadow-glow);
+}
+
+.detail-section h3 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.7rem;
+  color: var(--primary-blue);
+  padding-bottom: 18px;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(
+      to right,
+      var(--primary-blue),
+      var(--primary-gradient-end),
+      #f8f9fa
+    )
+    1;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.detail-grid-large {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(350px, 1fr)
+  ); /* Slightly wider min columns */
+  gap: 25px 35px; /* Increased gap */
+}
+
+.detail-grid-large p {
+  margin: 10px 0;
+  font-size: 1.1rem; /* Slightly larger text */
+  color: var(--text-color-dark);
+}
+
+.detail-grid-large p strong {
+  color: var(--text-color-light-grey);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* 🚀 ENHANCEMENT 3: Status Badge Styles - More prominent and distinct */
+.status-badge {
+  padding: 9px 18px;
+  border-radius: 25px; /* More rounded */
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  text-transform: uppercase;
+  margin-left: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+  transition: var(--transition-ease);
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Specific status colors (Example - adapt in JS based on actual status) */
+.status-badge.complete {
+  background: linear-gradient(45deg, #28a745, #218838);
+}
+.status-badge.pending {
+  background: linear-gradient(45deg, #ffc107, #e0a800);
+}
+.status-badge.rejected {
+  background: linear-gradient(45deg, #dc3545, #c82333);
+}
+
+.status-badge:hover {
+  transform: translateY(-2px) scale(1.03); /* Lift and slight scale */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Report & Utility Styles --- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 50px;
+  font-weight: 600;
+  color: var(--primary-blue);
+  text-decoration: none;
+
+  transition: var(--transition-ease);
+  font-size: 1.05rem;
+}
+.back-link:hover {
+  color: var(--primary-gradient-end);
+  text-decoration: none;
+  transform: translateX(-10px);
+  filter: brightness(1.1); /* Slight brightness increase */
+}
+.back-link svg {
+  transition: transform 0.2s ease;
+}
+.back-link:hover svg {
+  transform: translateX(-3px); /* Arrow subtle movement */
+}
+
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 45px;
+  padding-bottom: 25px;
+  border-bottom: 2px solid var(--border-light);
+}
+
+/* 🚀 ENHANCEMENT 4: PDF Download Button (Neumorphic/Pressed Effect) */
+.download-pdf-button {
+  background-image: linear-gradient(
+    135deg,
+    var(--primary-gradient-start) 0%,
+    var(--primary-gradient-end) 100%
+  );
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 50px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition-lift);
+  box-shadow: 0 8px 20px rgba(0, 119, 194, 0.4), 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden; /* For ripple effect if added */
+}
+
+.download-pdf-button:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 119, 194, 0.6), 0 4px 10px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.05); /* Slight brightness */
+}
+
+.download-pdf-button:active {
+  transform: translateY(-2px);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.4), var(--shadow-medium); /* Inset shadow for pressed effect */
+  background-image: linear-gradient(
+    135deg,
+    #005aa7 0%,
+    #009ad6 100%
+  ); /* Slightly darker gradient */
+}
+
+/* --- Summary Cards (REDUCED SIZE) --- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* Min size slightly reduced */
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+/* 🚀 ENHANCEMENT 5: Summary Card Design (Defined Edges & Softer Neumorphic Feel) */
+.summary-card {
+  background-color: var(--card-bg-white);
+  border-radius: 18px; /* Consistent rounding */
+  padding: 25px; /* Reduced padding for smaller size */
+  /* Subtle neumorphic-like shadow for depth */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7); /* Inner highlight for subtle 'pop' */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: none; /* Removed left border for neumorphic style */
+  transition: var(--transition-ease);
+}
+
+.summary-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Special styling for the Total Estimated Cost card */
+.total-cost-card {
+  background: linear-gradient(45deg, var(--secondary-dark) 0%, #2a415b 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 0 3px var(--accent-yellow);
+  transform: translateY(-5px);
+  border: none; /* Override standard border */
+}
+
+.total-cost-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 0 3px var(--accent-yellow),
+    0 0 20px var(--accent-yellow);
+}
+
+/* --- 🎨 NEW: Colored Summary Cards --- */
+
+/* Card 2: Damage Severity */
+.summary-card:nth-of-type(2) {
+  background: linear-gradient(
+    45deg,
+    var(--accent-orange-dark) 0%,
+    var(--accent-orange-light) 100%
+  );
+  color: var(--secondary-dark); /* Dark text on yellow is more readable */
+  border: none;
+}
+.summary-card:nth-of-type(2) .card-title {
+  color: var(--secondary-dark);
+  opacity: 0.8;
+}
+.summary-card:nth-of-type(2) .card-value {
+  color: var(--secondary-dark);
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Card 3: Damage Detected */
+.summary-card:nth-of-type(3) {
+  background: linear-gradient(
+    45deg,
+    var(--accent-green-dark) 0%,
+    var(--accent-green-light) 100%
+  );
+  color: var(--text-color-light);
+  border: none;
+}
+.summary-card:nth-of-type(3) .card-title {
+  color: var(--text-color-light);
+}
+.summary-card:nth-of-type(3) .card-value {
+  color: var(--card-bg-white);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Card 4: Detection Confidence */
+.summary-card:nth-of-type(4) {
+  background: linear-gradient(
+    45deg,
+    var(--accent-teal-dark) 0%,
+    var(--accent-teal-light) 100%
+  );
+  color: var(--text-color-light);
+  border: none;
+}
+.summary-card:nth-of-type(4) .card-title {
+  color: var(--text-color-light);
+}
+.summary-card:nth-of-type(4) .card-value {
+  color: var(--card-bg-white);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Override hover effect for new colored cards to prevent white bg flash */
+.summary-card:nth-of-type(2):hover,
+.summary-card:nth-of-type(3):hover,
+.summary-card:nth-of-type(4):hover {
+  transform: translateY(-3px) scale(1.02); /* Keep the transform */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* Darken shadow */
+  /* Do not override background color */
+}
+
+.card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color-light-grey);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.total-cost-card .card-title {
+  color: #e0e6eb;
+}
+
+.card-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--secondary-dark);
+  line-height: 1.2;
+}
+
+.large-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--accent-yellow);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* --- ⚖️ CHANGED: 50/50 Grid Split --- */
+.main-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* <-- CHANGED for 50/50 split */
+  gap: 30px;
+}
+/* --- Detailed Cost Breakdown Table (Targeted Enhancement) --- */
+
+.report-card {
+  background-color: var(--card-bg-white);
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-ease);
+}
+.report-container {
+  /* To ensure the report itself uses the full space of its container (claim-detail-container) */
+  max-width: 100% !important;
+  width: 100%;
+  margin: 30px 0;
+  background: var(--card-bg-white);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-lift);
+}
+.report-container:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-heavy);
+}
+
+/* Table Header */
+.report-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Lighter shadow for table */
+  margin-top: 20px; /* **ENHANCEMENT: Added top margin for visual gap below "Detailed Cost Breakdown"** */
+}
+
+.report-table thead th {
+  background-color: var(--table-header-bg); /* Use light blue accent color */
+  color: var(--primary-blue);
+  padding: 18px 20px;
+  font-weight: 700;
+  border-bottom: 3px solid var(--primary-blue);
+  text-align: left;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+/* Table Body */
+.report-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.report-table tbody tr:nth-child(even) {
+  background-color: #f7f9fc;
+}
+
+.report-table tbody tr:hover {
+  background-color: #eef5fb;
+}
+
+.report-table tbody td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e0e6eb;
+  color: var(--text-color-dark);
+  font-size: 0.95rem;
+}
+
+/* Table Footer / Totals Section */
+.report-totals {
+  padding: 20px 0; /* **ENHANCEMENT: Added vertical padding for overall spacing** */
+  background-color: var(--card-bg-white);
+}
+
+.report-totals p {
+  font-size: 1rem;
+  color: var(--text-color-dark);
+  font-weight: 500;
+  padding: 8px 20px; /* **ENHANCEMENT: Padding to separate subtotal from table** */
+  margin: 0;
+  text-align: right;
+}
+
+.report-totals .total-row {
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: white;
+  background-color: var(
+    --primary-blue
+  ); /* **ENHANCEMENT: Total background color changed to primary blue** */
+  border-top: 3px solid var(--accent-yellow); /* **ENHANCEMENT: Yellow accent line above total** */
+  padding: 15px 20px; /* **ENHANCEMENT: Padding adjustment for total row** */
+  margin-top: 15px; /* **ENHANCEMENT: Added gap above the total row** */
+  display: block; /* Allows flex properties if needed, but primarily for spacing */
+  text-align: right;
+  border-radius: 0 0 12px 12px; /* Bottom corner rounding */
+  box-shadow: 0 -5px 15px rgba(0, 96, 173, 0.3); /* Shadow for total row lift */
+}
+
+/* --- 📸 NEW: Visual Evidence & Image Styling --- */
+.evidence-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.evidence-img-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  border: 2px solid #fff;
+  aspect-ratio: 1 / 1; /* Keeps images square */
+  cursor: pointer;
+}
+
+.evidence-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.evidence-img-wrapper:hover img {
+  transform: scale(1.15); /* Smooth zoom effect */
+}
+
+/* Overlay icon on hover */
+.evidence-img-wrapper::after {
+  content: "🔍";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.evidence-img-wrapper:hover::after {
+  opacity: 1;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1200px) {
+  .main-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .claim-detail-container {
+    padding: 30px 15px;
+  }
+  .claim-detail-container h1 {
+    font-size: 2.2rem;
+  }
+  .claim-meta {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+  .detail-section {
+    padding: 30px 20px;
+  }
+  .detail-section h3 {
+    font-size: 1.5rem;
+  }
+  .summary-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .summary-card {
+    padding: 20px;
+  }
+  .card-title {
+    font-size: 0.85rem;
+  }
+  .card-value {
+    font-size: 1.7rem;
+  }
+  .large-value {
+    font-size: 2.2rem;
+  }
+  .report-header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch; /* Stretch buttons etc. */
+  }
+  .download-pdf-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    justify-content: center; /* Center content in button */
+  }
+  .report-card {
+    padding: 25px;
+  }
+  .report-table thead th,
+  .report-table tbody td {
+    padding: 12px 15px;
+    font-size: 0.85rem;
+  }
+  .report-totals .total-row {
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+  .back-link {
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+  }
+}
+
+/* --- 🚀 NEW: Entrance Animations --- */
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply to main containers */
+.claim-detail-container h1,
+.claim-meta {
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.summary-grid {
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0; /* Start hidden */
+  animation-delay: 0.1s;
+}
+
+.main-content-grid {
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  animation-delay: 0.2s;
+}
+
+.report-container {
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  animation-delay: 0.3s;
+}
+
+/* --- 🎨 NEW: Gradient Text Effects --- */
+.claim-detail-container h1 {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-dark) 0%,
+    var(--primary-blue) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block; /* Required for text gradient */
+}
+
+.large-value {
+  /* Makes the total cost text look metallic/gold */
+  background: linear-gradient(135deg, #ffd700 0%, #fdb931 50%, #e0a800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* --- 📜 NEW: Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c9d2;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-blue);
+}
+
+/* --- 📊 NEW: Interactive Table Rows --- */
+.report-table tbody tr {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.report-table tbody tr:hover {
+  background-color: #ffffff !important; /* Force white on hover */
+  transform: scale(1.01); /* Slight expand */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Lift shadow */
+  z-index: 2; /* Bring above other rows */
+  border-left: 4px solid var(--primary-blue); /* Accent indicator */
+}
+
+/* Soften the borders inside the table for a cleaner look */
+.report-table tbody td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.glass-finish {
+  background: rgba(255, 255, 255, 0.95); /* Slightly transparent */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* --- 🎯 FIX: Center Title & Position Back Button --- */
+
+/* 1. Set context for positioning */
+.claim-detail-container {
+  position: relative; /* Essential for absolute positioning to work */
+}
+
+/* 2. Move Back Link to the top-left corner, independent of the title */
+.back-link {
+  position: absolute;
+  top: 55px; /* Align with container top padding */
+  left: 40px; /* Align with container left padding */
+  margin: 0; /* Remove old margin to prevent spacing issues */
+  z-index: 10; /* Ensure it stays on top */
+}
+
+/* 3. Force Title to take full width and center perfectly */
+.claim-detail-container h1 {
+  display: block;
+  width: 100%;
+  text-align: center !important; /* Force centering */
+  margin-top: 0; /* Remove top margin since back button is moved */
+  margin-bottom: 15px;
+}
+
+/* --- 📱 Mobile Tweak: Stack them on small screens --- */
+@media (max-width: 768px) {
+  .back-link {
+    position: relative; /* Return to normal flow on mobile */
+    top: auto;
+    left: auto;
+    display: inline-flex;
+    margin-bottom: 15px;
+  }
+
+  .claim-detail-container h1 {
+    font-size: 2rem; /* Slightly smaller on mobile */
+  }
+}
+
+/* Ensure this exists in App.css */
+.status-success {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+  border: 1px solid #c3e6cb;
+}
+
+.status-danger {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  border: 1px solid #f5c6cb;
+}
+
+.status-warning {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+  border: 1px solid #ffeeba;
+}
