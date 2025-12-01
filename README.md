@@ -103,12 +103,16 @@ Repair Cost > 75% of Vehicle IDV
 
 ### 1️⃣ AI Damage Detection & Heatmap  
 <img width="1919" height="1077" alt="Screenshot 2025-12-01 164217" src="https://github.com/user-attachments/assets/c2e3c3a9-476b-4e0d-810a-9a55bee4b80c" />
+
 <img width="1919" height="1079" alt="Screenshot 2025-12-01 164227" src="https://github.com/user-attachments/assets/79f50999-2450-4571-93d7-e3969bccafa0" />
+
 <img width="1919" height="1079" alt="Screenshot 2025-12-01 164235" src="https://github.com/user-attachments/assets/19442529-7149-467d-a9ec-0498c77393a9" />
 
+---
 ### 2️⃣ Admin Dashboard  
 <img width="1919" height="1079" alt="Screenshot 2025-12-01 163848" src="https://github.com/user-attachments/assets/ca908c3e-27ce-48ec-9634-89c3c323287c" />
 
+--- 
 
 ### 3️⃣ User Profile & Claim History  
 <img width="1919" height="1079" alt="Screenshot 2025-12-01 164136" src="https://github.com/user-attachments/assets/b662f83a-3524-4d90-86d6-85f03ca8acd2" />
